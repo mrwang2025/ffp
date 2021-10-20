@@ -1,0 +1,4 @@
+# Source code should not be published
+webpack.config.js
+src
+.babelrc
