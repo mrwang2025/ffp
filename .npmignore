@@ -1,4 +1,12 @@
+# Demo
+demo
+
 # Source code should not be published
 webpack.config.js
 src
 .babelrc
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
