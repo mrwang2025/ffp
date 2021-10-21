@@ -1,4 +1,4 @@
-import { FacetsList } from '@mrwang2025/react-ui';
+import { FacetsList } from './modules';
 import './App.css';
 
 function App() {
