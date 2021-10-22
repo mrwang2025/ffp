@@ -4,19 +4,19 @@ import { createStyles, createTheme, makeStyles, MuiThemeProvider, useTheme } fro
 import Toolbar from "@material-ui/core/Toolbar";
 import WidgetsRoundedIcon from '@material-ui/icons/WidgetsRounded';
 import React, { Suspense, useEffect, useState } from "react";
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import 'react-perfect-scrollbar/dist/css/styles.css';
-import 'react-reflex/styles.css';
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
+import 'react-reflex/styles.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import ErrorBoundary from "./common/errorBoundary";
 import LoadingBar from "./common/loadingBar";
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-
+const _ = require('lodash')
 const EXAMPLE_TITLE_LIST = [
-  'dashboard',
-  'simple'
+  {
+    title: 'FacetsList Examples',
+    fileName: 'facetsListExample'
+  },
 ]
 
 function getMuiTheme() {
@@ -70,8 +70,8 @@ function TitleHeader(props) {
   </div>
 }
 
-function MenuItem({ title }) {
-  return <Link href={title || '#'} target={'_self'} color="inherit" style={{
+function MenuItem({ title, fileName }) {
+  return <Link href={fileName || '#'} target={'_self'} color="inherit" style={{
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'left',
@@ -84,9 +84,12 @@ function MenuItem({ title }) {
 }
 
 function MenuList() {
-  return <div style={{ width: '90%', height: '100%', paddingLeft: 10 }}>
+  return <div style={{ height: '100%', paddingLeft: 10, paddingTop: 10 }}>
     {
-      EXAMPLE_TITLE_LIST.map(title => <MenuItem title={title} key={`example-${title}`} />)
+      EXAMPLE_TITLE_LIST.map(example => <MenuItem
+        title={example.title}
+        fileName={example.fileName}
+        key={`example-${example.fileName}`} />)
     }
   </div>
 }
@@ -107,9 +110,17 @@ function CodeView(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.match.params.x])
 
-  return <SyntaxHighlighter language="javascript" style={github}>
-    {code}
-  </SyntaxHighlighter>
+  return <div>
+    <div style={{padding: 10}}>Code View</div>
+    <SyntaxHighlighter
+      language="javascript"
+      style={vs2015}
+      wrapLongLines={true}
+      showLineNumbers ={true}
+    >
+      {code}
+    </SyntaxHighlighter>
+  </div>
 }
 
 
@@ -117,7 +128,7 @@ function ExampleView(props) {
   const [viewer, setViewer] = useState(null);
   useEffect(() => {
     const exampleName = props.match.params.x || ''
-    if (EXAMPLE_TITLE_LIST.includes(exampleName.toLowerCase())) {
+    if (_.find(EXAMPLE_TITLE_LIST, example => example.fileName.toLowerCase() === exampleName.toLowerCase())) {
       try {
         const Viewer = React.lazy(() => import(`./examples/${exampleName}.js`));
         if (Viewer) {
@@ -165,29 +176,25 @@ function App() {
             </ReflexElement>
             <ReflexSplitter propagate={true} />
             <ReflexElement>
-              <div style={{ height: '100%' }}>
-                <PerfectScrollbar>
-                  <main className={classes.content}>
-                    <ReflexContainer>
-                      <ReflexElement>
-                        <ErrorBoundary>
-                          <Switch>
-                            <Route path="/:x" component={ExampleView} />
-                            <Route path="/" component={BlankContent} />
-                          </Switch>
-                        </ErrorBoundary>
-                      </ReflexElement>
-                      <ReflexSplitter propagate={true} />
-                      <ReflexElement>
-                        <Switch>
-                          <Route path="/:x" component={CodeView} />
-                          <Route path="/" component={BlankContent} />
-                        </Switch>
-                      </ReflexElement>
-                    </ReflexContainer>
-                  </main>
-                </PerfectScrollbar>
-              </div>
+              <main className={classes.content}>
+                <ReflexContainer>
+                  <ReflexElement>
+                    <ErrorBoundary>
+                      <Switch>
+                        <Route path="/:x" component={ExampleView} />
+                        <Route path="/" component={BlankContent} />
+                      </Switch>
+                    </ErrorBoundary>
+                  </ReflexElement>
+                  <ReflexSplitter propagate={true} />
+                  <ReflexElement>
+                    <Switch>
+                      <Route path="/:x" component={CodeView} />
+                      <Route path="/" component={BlankContent} />
+                    </Switch>
+                  </ReflexElement>
+                </ReflexContainer>
+              </main>
             </ReflexElement>
           </ReflexContainer>
         </div>
