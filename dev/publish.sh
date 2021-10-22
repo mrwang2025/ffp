@@ -59,3 +59,6 @@ RC=$?
 
 npm login
 npm publish
+
+echo "Cleanup the ./lib folder"
+rm -rf ./lib
