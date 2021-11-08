@@ -30,6 +30,11 @@ module.exports = {
             'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
         }
     },
+    performance: {
+        hints: false,
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
+    },
     externals: {
         // Don't bundle react or react-dom      
         react: {

@@ -14,8 +14,8 @@ import LoadingBar from "./common/loadingBar";
 const _ = require('lodash')
 const EXAMPLE_TITLE_LIST = [
   {
-    title: 'FacetsList Examples',
-    fileName: 'facetsListExample'
+    title: 'Dashboard Examples',
+    fileName: 'dashboardExample'
   },
 ]
 
@@ -45,15 +45,7 @@ const useStyles = makeStyles(theme =>
       flexGrow: 1,
       marginLeft: 10,
       marginRight: 40
-    },
-    content: {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-      }),
-      marginLeft: 0,
-      height: '100%',
-    },
+    }
   })
 );
 
@@ -111,12 +103,12 @@ function CodeView(props) {
   }, [props.match.params.x])
 
   return <div>
-    <div style={{padding: 10}}>Code View</div>
+    <div style={{ padding: 10 }}>Code View</div>
     <SyntaxHighlighter
       language="javascript"
       style={vs2015}
       wrapLongLines={true}
-      showLineNumbers ={true}
+      showLineNumbers={true}
     >
       {code}
     </SyntaxHighlighter>
@@ -147,8 +139,6 @@ function ExampleView(props) {
 }
 
 function App() {
-  const theme = useTheme();
-  const classes = useStyles(theme);
   return <Router>
     <MuiThemeProvider theme={getMuiTheme()}>
       <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -176,25 +166,23 @@ function App() {
             </ReflexElement>
             <ReflexSplitter propagate={true} />
             <ReflexElement>
-              <main className={classes.content}>
-                <ReflexContainer>
-                  <ReflexElement>
-                    <ErrorBoundary>
-                      <Switch>
-                        <Route path="/:x" component={ExampleView} />
-                        <Route path="/" component={BlankContent} />
-                      </Switch>
-                    </ErrorBoundary>
-                  </ReflexElement>
-                  <ReflexSplitter propagate={true} />
-                  <ReflexElement>
+              <ReflexContainer orientation="horizontal" style={{ with: '100%', height: '100%' }}>
+                <ReflexElement>
+                  <ErrorBoundary>
                     <Switch>
-                      <Route path="/:x" component={CodeView} />
+                      <Route path="/:x" component={ExampleView} />
                       <Route path="/" component={BlankContent} />
                     </Switch>
-                  </ReflexElement>
-                </ReflexContainer>
-              </main>
+                  </ErrorBoundary>
+                </ReflexElement>
+                <ReflexSplitter propagate={true} />
+                <ReflexElement>
+                  <Switch>
+                    <Route path="/:x" component={CodeView} />
+                    <Route path="/" component={BlankContent} />
+                  </Switch>
+                </ReflexElement>
+              </ReflexContainer>
             </ReflexElement>
           </ReflexContainer>
         </div>

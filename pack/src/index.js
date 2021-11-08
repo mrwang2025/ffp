@@ -1,4 +1,7 @@
-import { FacetsList } from "./facetsList";
+import { EFieldType } from "./fieldFilterControl";
+import FieldFilterControlGroup from './fieldFilterControlGroup';
+
 export {
-    FacetsList
-}
+    EFieldType,
+    FieldFilterControlGroup
+};

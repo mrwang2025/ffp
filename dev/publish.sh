@@ -17,7 +17,12 @@ yarn build
 
 RC=$?
 echo "INFO: End preparing the publish of npmjs module"
-[ $RC -eq 0 ] && echo "Success" || echo "Error"
+if [ $RC -eq 0 ]; then
+    echo "Success" 
+else
+    echo "Error - See above"
+    exit 1
+fi
 
 
 echo "INFO: Publishing the module"

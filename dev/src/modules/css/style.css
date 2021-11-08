@@ -1,0 +1,140 @@
+/*
+filter control frame
+*/
+
+.filter-control-group {
+    width: 100%;
+}
+
+.filter-control-block {
+    width: 100%;
+}
+
+.filter-control {
+    border: 1px solid lightgray;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.filter-control-title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.filter-control-title-bar-text {
+    font-weight: bold;
+    padding: 5px;
+    flex: 1;
+}
+
+.filter-control-title-bar-clear-button {
+    font-style: italic;
+    color: gray;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.filter-control-title-bar-clear-button:hover {
+    font-style: italic;
+    color: blue;
+}
+
+.filter-control-content-container {
+    padding: 5px;
+}
+
+/*
+
+*/
+
+.facets-list-item {
+    padding-left: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.facets-list-item-label {
+    margin-left: 3px;
+    flex: 1;
+}
+
+.facets-list-item:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: darkblue;
+}
+
+.facets-list-item-occurrences {
+    word-break: keep-all;
+    white-space: nowrap;
+    margin-right: 5px;
+}
+
+.facets-list-search-bar-box {
+    position: relative;
+    display: flex;
+    padding: 3px;
+}
+
+.facets-list-search-bar-input {
+    color: blue;
+    font: status-bar;
+    width: 100%;
+}
+
+.facets-list-expand-button {
+    padding: 3px;
+    font-style: italic;
+    text-align: center;
+    border-top: 1px solid lightgray;
+    margin-top: 10px;
+    color: gray;
+    cursor: pointer;
+}
+
+.facets-list-expand-button:hover {
+    color: blue;
+}
+
+.facets-list-sort-button-active {
+    color: blue;
+}
+
+.facets-list-sort-button-deactive {
+    color: gray;
+}
+
+.facets-list-sort-button-active:hover {
+    color: red;
+}
+
+.facets-list-sort-button-deactive:hover {
+    color: blue;
+}
+
+.facets-list-no-availble-items {
+    text-align: center;
+    font-style: italic;
+    color: gray;
+}
+
+/**/
+
+.date-range-button {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.date-range-button:hover {
+    background-color: whitesmoke;
+}
