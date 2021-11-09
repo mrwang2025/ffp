@@ -23,6 +23,15 @@ filter control frame
     border-bottom: 1px solid lightgray;
 }
 
+.filter-control-title-bar-hide-button {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.filter-control-title-bar-hide-button:hover {
+    color: blue;
+}
+
 .filter-control-title-bar-text {
     font-weight: bold;
     padding: 5px;
