@@ -8,6 +8,7 @@ const descriptors = [
         name: 'field-filter-publish',
         type: EFieldType.DATE_RANGE,
         impactedByOtherFilters: true,
+        expand: true,
         config: {
             field: 'datePublished',
         }
@@ -17,6 +18,7 @@ const descriptors = [
         name: 'field-filter-price',
         type: EFieldType.RANGE_CONTINUOUS,
         impactedByOtherFilters: true,
+        expand: true,
         config: {
             field: 'price',
             unit: '$'
@@ -27,6 +29,7 @@ const descriptors = [
         name: 'field-filter-delivery',
         type: EFieldType.RANGE_DISCRETE,
         impactedByOtherFilters: true,
+        expand: true,
         config: {
             field: 'deliveryDates',
             unit: 'd'
@@ -37,6 +40,7 @@ const descriptors = [
         name: 'field-filter-origin',
         type: EFieldType.CATEGORY_MULTIPLE,
         impactedByOtherFilters: true,
+        expand: true,
         config: {
             field: 'origin',
             showOccurrencesColumn: true,
@@ -52,6 +56,7 @@ const descriptors = [
         name: 'field-filter-brand',
         type: EFieldType.CATEGORY_SINGLE,
         impactedByOtherFilters: true,
+        expand: false,
         config: {
             field: 'brand',
             showOccurrencesColumn: true,
@@ -67,6 +72,7 @@ const descriptors = [
         name: 'field-filter-type',
         type: EFieldType.CATEGORY_MULTIPLE,
         impactedByOtherFilters: true,
+        expand: true,
         config: {
             field: 'type',
             showOccurrencesColumn: false,
@@ -82,6 +88,7 @@ const descriptors = [
         name: 'field-filter-colors',
         type: EFieldType.CATEGORY_MULTIPLE,
         impactedByOtherFilters: true,
+        expand: false,
         config: {
             field: 'colors',
             showOccurrencesColumn: true,
@@ -97,6 +104,7 @@ const descriptors = [
         name: 'field-filter-conditions',
         type: EFieldType.CATEGORY_SINGLE,
         impactedByOtherFilters: true,
+        expand: false,
         config: {
             field: 'conditions',
             showOccurrencesColumn: true,
