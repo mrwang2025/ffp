@@ -1,6 +1,6 @@
 {
   "name": "@mrwang2025/react-ui",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Some customized versions of react components",
   "main": "./lib/index.js",
   "scripts": {

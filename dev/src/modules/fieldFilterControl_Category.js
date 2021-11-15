@@ -146,6 +146,7 @@ export default function FieldFilterControlCategory({
         collapseThreshold = 5,
         sortByOccurrences = true,
         sortAscent = false,
+        exclude = []
     } = config
 
     const [searchText, setSearchText] = useState('')
@@ -153,7 +154,8 @@ export default function FieldFilterControlCategory({
     const [sortAscentBuffer, setSortAscentBuffer] = useState(sortAscent)
     const [rowsToShow, setRowsToShow] = useState(collapseThreshold)
 
-    const summary = filterSummaryByFieldName(baseData, field, sortByOccurrencesBuffer, sortAscentBuffer)
+    const summaryAll = filterSummaryByFieldName(baseData, field, sortByOccurrencesBuffer, sortAscentBuffer)
+    const summary = _.filter(summaryAll, s => !exclude.includes(s.name))
     const showSearchBar = (searchBarDisplayThreshold === 0) || (searchBarDisplayThreshold > 0 && searchBarDisplayThreshold < summary.length)
     const searchedResult = _.filter(summary, s => !searchText || _.toLower(s.name).includes(_.toLower(searchText)))
 

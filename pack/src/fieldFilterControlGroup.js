@@ -27,8 +27,8 @@ export default function FieldFilterControlGroup({ data, filterDescriptors, onFil
                     filters={filters}
                     data={data}
                     impactedByOtherFilters={kit.impactedByOtherFilters}
+                    expand={kit.expand}
                     isActive={active === kit.name}
-
                     onFilterChanged={filter => {
                         setActive(kit.name)
 

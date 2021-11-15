@@ -7,12 +7,13 @@ const _ = require('lodash')
 
 export default function FilterControl({
     name,
+    expand,
     title,
     onFilterChanged,
     filters,
     children
 }) {
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(expand)
     const currentFilter = _.find(filters, f => f.getOwner() === name)
     return <div className="filter-control">
         {

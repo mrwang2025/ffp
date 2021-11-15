@@ -37,6 +37,7 @@ function FieldFilterControl({
     // for base data
     data,
     impactedByOtherFilters,
+    expand,
     isActive,
 
     // for control selection
@@ -59,6 +60,7 @@ function FieldFilterControl({
     const Control = (type in EFieldType) ? EFieldFilterControl[type] : undefined
     return <FilterControl
         name={name}
+        expand={expand}
         title={title}
         onFilterChanged={onFilterChanged}
         filters={filters}

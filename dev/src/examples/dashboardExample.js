@@ -49,6 +49,7 @@ const descriptors = [
             searchBarDisplayThreshold: 2,
             sortBarDisplayThreshold: 2,
             collapseThreshold: 5,
+            exclude: ['China', 'USA'],
         }
     },
     {
