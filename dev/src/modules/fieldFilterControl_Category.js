@@ -11,10 +11,15 @@ const _ = require('lodash')
 
 
 function Facet({ name, occurrences, checked, onChecked, showOccurrences, searchKey }) {
-    return <div className="facets-list-item" onClick={() => onChecked(!checked)}>
+    return <div className="facets-list-item" onClick={() => {
+        onChecked(!checked)
+    }}>
         <Checkbox
             checked={checked}
-            onChange={event => onChecked(event.target.checked)}
+            onClick={event => {
+                onChecked(!checked)
+                event.stopPropagation()
+            }}
         />
         <div className="facets-list-item-label">
             <Highlighter
@@ -79,17 +84,16 @@ function FacetRadio({ name, occurrences, showOccurrences, onLabelClicked, search
 function RadioOptionList({ name, summary, showOccurrencesColumn, onChange, searchKey, rowsToShow, selectedOptions }) {
     const rows = _.slice(summary, 0, rowsToShow > 0 ? rowsToShow : summary.length)
     const selected = _.isEmpty(selectedOptions) ? '' : selectedOptions[0]
-    return <RadioGroup
-        selectedValue={selected || ''}
-        onChange={v => onChange([v])}
-    >
+    return <RadioGroup selectedValue={selected || ''} onChange={() => { }}>
         {
             rows.map(row => <FacetRadio
                 key={`react-ui-facets-list-${name}-${row.name}`}
                 name={row.name}
                 occurrences={row.occurrences}
                 showOccurrences={showOccurrencesColumn}
-                onLabelClicked={() => onChange([row.name])}
+                onLabelClicked={() => {
+                    onChange([row.name])
+                }}
                 searchKey={searchKey}
             />)
         }
