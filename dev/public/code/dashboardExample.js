@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { mockProducts } from "../data/mockList";
 import { EFieldType, FieldFilterControlGroup } from "../modules";
-
 const descriptors = [
     {
         title: 'Date Published',

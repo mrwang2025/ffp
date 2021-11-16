@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { AiOutlineMinusSquare, AiOutlinePlusSquare } from "react-icons/ai";
 import { mockProducts } from "../data/mockList";
 import { EFieldType, FieldFilterControlGroup } from "../modules";
+import { FieldNameFilter, FilterGroupOrGate } from "../modules/filter";
 
 const descriptors = [
     {
@@ -41,6 +43,8 @@ const descriptors = [
         type: EFieldType.CATEGORY_MULTIPLE,
         impactedByOtherFilters: true,
         expand: true,
+        expandIcon: <AiOutlineMinusSquare />,
+        collapseIcon: <AiOutlinePlusSquare />,
         config: {
             field: 'origin',
             showOccurrencesColumn: true,
@@ -49,7 +53,7 @@ const descriptors = [
             searchBarDisplayThreshold: 2,
             sortBarDisplayThreshold: 2,
             collapseThreshold: 5,
-            exclude: ['China', 'USA'],
+            exclude: ['USA'],
         }
     },
     {
@@ -116,7 +120,17 @@ const descriptors = [
             collapseThreshold: 5,
         }
     },
+]
 
+const DEFAULT_FILTERS = [
+    new FilterGroupOrGate('field-filter-origin', [
+        new FieldNameFilter('field-filter-origin', 'origin', 'China'),
+        new FieldNameFilter('field-filter-origin', 'origin', 'Vietnam'),
+    ]),
+
+    new FilterGroupOrGate('field-filter-conditions', [
+        new FieldNameFilter('field-filter-conditions', 'conditions', 'new'),
+    ])
 ]
 
 export default function DashboardExample() {
@@ -127,7 +141,9 @@ export default function DashboardExample() {
             <FieldFilterControlGroup
                 data={mockProducts}
                 filterDescriptors={descriptors}
+                defaultFilters={DEFAULT_FILTERS}
                 onFiltered={data => setFilteredData(data)}
+                onFilterChanged={filters => console.log(filters)}
             />
         </div>
         <div style={{ flex: 1, height: '100%', backgroundColor: "lightgreen", overflow: 'auto' }}>

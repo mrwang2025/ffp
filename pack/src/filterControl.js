@@ -11,6 +11,8 @@ export default function FilterControl({
     title,
     onFilterChanged,
     filters,
+    expandIcon,
+    collapseIcon,
     children
 }) {
     const [show, setShow] = useState(expand)
@@ -21,7 +23,7 @@ export default function FilterControl({
             <div className="filter-control-title-bar">
                 <div className="filter-control-title-bar-hide-button" onClick={() => setShow(p => !p)}>
                     {
-                        show ? <BiShow /> : <BiHide />
+                        show ? (expandIcon ? expandIcon : <BiShow />) : (collapseIcon ? collapseIcon : <BiHide />)
                     }
                 </div>
                 <div className="filter-control-title-bar-text">{title}</div>

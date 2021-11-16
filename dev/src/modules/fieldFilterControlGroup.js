@@ -8,11 +8,14 @@ function Block({ children }) {
     return <div className="filter-control-block">{children}</div>
 }
 
-export default function FieldFilterControlGroup({ data, filterDescriptors, onFiltered }) {
-    const [filters, setFilters] = useState([])
+export default function FieldFilterControlGroup({ data, filterDescriptors, onFilterChanged, onFiltered, defaultFilters }) {
+    const [filters, setFilters] = useState(defaultFilters)
     const [active, setActive] = useState('')
     function updateFilters(newFilters) {
         setFilters(newFilters)
+        if (onFilterChanged) {
+            onFilterChanged(newFilters)
+        }
         if (onFiltered) {
             onFiltered(new FilterGroupAndGate('', newFilters).filter(data))
         }
@@ -28,6 +31,8 @@ export default function FieldFilterControlGroup({ data, filterDescriptors, onFil
                     data={data}
                     impactedByOtherFilters={kit.impactedByOtherFilters}
                     expand={kit.expand}
+                    expandIcon={kit.expandIcon}
+                    collapseIcon={kit.collapseIcon}
                     isActive={active === kit.name}
                     onFilterChanged={filter => {
                         setActive(kit.name)

@@ -40,6 +40,10 @@ function FieldFilterControl({
     expand,
     isActive,
 
+    // for rendering
+    expandIcon,
+    collapseIcon,
+
     // for control selection
     type,
 
@@ -64,6 +68,8 @@ function FieldFilterControl({
         title={title}
         onFilterChanged={onFilterChanged}
         filters={filters}
+        expandIcon={expandIcon}
+        collapseIcon={collapseIcon}
     >
         {
             Control
